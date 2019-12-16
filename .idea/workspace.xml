@@ -11,7 +11,24 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75b976e3-ea27-4c17-9e10-37a8cccdea9b" name="Default Changelist" comment="" />
+    <list default="true" id="75b976e3-ea27-4c17-9e10-37a8cccdea9b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/cgame.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/terminal.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/terminal.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/Enemy.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/Enemy.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/Hero.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/Hero.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/Laser.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/Laser.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/World.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/World.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +38,11 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1UyXitTv1yHvB3yM21ttYYIcjiK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
     <option name="autoscrollFromSource" value="true" />
@@ -35,6 +56,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunManager">
@@ -70,7 +92,7 @@
       <workItem from="1576332211252" duration="12921000" />
       <workItem from="1576402047380" duration="9299000" />
       <workItem from="1576439376825" duration="3248000" />
-      <workItem from="1576485382634" duration="6059000" />
+      <workItem from="1576485382634" duration="6301000" />
     </task>
     <servers />
   </component>
