@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="cgame" targetName="cgame" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="75b976e3-ea27-4c17-9e10-37a8cccdea9b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1UyXitTv1yHvB3yM21ttYYIcjiK" />
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="autoscrollFromSource" value="true" />
+    <option name="compactDirectories" value="true" />
+    <option name="flattenModules" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="cgame" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cgame" TARGET_NAME="cgame" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cgame" RUN_TARGET_NAME="cgame">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="75b976e3-ea27-4c17-9e10-37a8cccdea9b" name="Default Changelist" comment="" />
+      <created>1576329938727</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576329938727</updated>
+      <workItem from="1576329941149" duration="1434000" />
+      <workItem from="1576332211252" duration="12921000" />
+      <workItem from="1576402047380" duration="9299000" />
+      <workItem from="1576439376825" duration="3248000" />
+      <workItem from="1576485382634" duration="6059000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="555" y="169" width="800" height="667" key="#Inspections" timestamp="1576337462692">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="555" y="169" width="800" height="667" key="#Inspections/0.0.1920.1080@0.0.1920.1080" timestamp="1576337462692" />
+    <state x="783" y="305" width="350" height="374" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576336199094">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="783" y="305" width="350" height="374" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1576336199094" />
+    <state x="820" y="228" width="270" height="569" key="#xdebugger.evaluate" timestamp="1576334651113">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="820" y="228" width="270" height="569" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1576334651113" />
+    <state width="1920" height="582" key="GridCell.Tab.0.bottom" timestamp="1576491432552">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="582" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1576491432552" />
+    <state width="1920" height="582" key="GridCell.Tab.0.center" timestamp="1576491432551">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="582" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1576491432551" />
+    <state width="1920" height="582" key="GridCell.Tab.0.left" timestamp="1576491432550">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="582" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1576491432550" />
+    <state width="1920" height="582" key="GridCell.Tab.0.right" timestamp="1576491432551">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="582" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1576491432551" />
+    <state width="1920" height="371" key="GridCell.Tab.1.bottom" timestamp="1576335841265">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="371" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1576335841265" />
+    <state width="1920" height="371" key="GridCell.Tab.1.center" timestamp="1576335841264">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="371" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1576335841264" />
+    <state width="1920" height="371" key="GridCell.Tab.1.left" timestamp="1576335841264">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="371" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1576335841264" />
+    <state width="1920" height="371" key="GridCell.Tab.1.right" timestamp="1576335841265">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="371" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1576335841265" />
+    <state x="0" y="20" width="1920" height="1035" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1576491605142">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="0" y="20" width="1920" height="1035" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1576491605142" />
+    <state x="624" y="248" width="672" height="677" key="run.anything.popup" timestamp="1576330649471">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="624" y="248" width="672" height="677" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1576330649471" />
+    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup" timestamp="1576488043192">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1576488043192" />
+  </component>
+</project>
