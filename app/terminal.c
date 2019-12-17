@@ -2,46 +2,52 @@
 // Created by urosjarc on 16. 12. 19.
 //
 
-#include <stdlib.h>
+#include <ncurses.h>
+#include <zconf.h>
 #include "terminal.h"
+
+int terminal_main(World *world) {
+    //Init screen
+    initscr();
+    noecho();
+    nodelay(stdscr, TRUE);
+    refresh();
+
+    //Main loop
+    char key;
+    for(int i=0; (key=getch()) != 'q';i++){
+        terminal_draw_world(world);
+        world_move_hero(world, key);
+        if(i%10==0) world_move_enemies(world);
+        usleep(1e4);
+    }
+
+    //End screen
+    endwin();
+    return 0;
+}
 
 void terminal_draw_world(World *world){
 
-    char cord[world->height][world->width];
-    int enemy_num = world_enemy_num(world);
-    Hero hero = world->hero;
-
-    //CREATE EMPTY WORLD
-    for(int h=0;h<world->height;h++){
-        for(int w=0;w<world->width;w++){
-            cord[h][w] = ' ';
+    //DRAW WORLD
+    for(int h=0;h<world->height+1;h++){
+        for(int w=1;w<world->width;w++)
+            mvaddch(h, w, ' ');
+        if(h<world->height){
+            mvaddch(h, 0, '|');
+            mvaddch(h, world->width, '|');
         }
-    }
-
-    //PLACE ENEMIES
-    for(int i=0;i<enemy_num-1;i++){
-        Enemy enemy = world->enemies[i];
-        cord[enemy.y][enemy.x] = 'x';
     }
 
     //PLACE HERO
-    cord[hero.y][hero.x] = '^';
+    Hero hero = world->hero;
+    mvaddch(hero.y, hero.x, '^');
 
-    //DRAW WORLD
-    terminal_clear();
-    for(int h=0;h<world->height;h++){
-        putchar('|');
-
-        for(int w=0;w<world->width;w++){
-            putchar(cord[h][w]);
-        }
-        putchar('|');
-        putchar('\n');
+    //PLACE ENEMIES
+    int enemy_num = world_enemy_num(world);
+    for(int i=0;i<enemy_num-1;i++){
+        Enemy enemy = world->enemies[i];
+        mvaddch(enemy.y, enemy.x, 'x');
     }
-
-    putchar('\n');
 }
 
-void terminal_clear() {
-    for(int i=0;i<20;i++) printf("\n");
-}

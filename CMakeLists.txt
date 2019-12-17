@@ -1,7 +1,11 @@
+
 cmake_minimum_required(VERSION 3.15)
 project(cgame C)
 
 set(CMAKE_C_STANDARD 11)
+
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
 
 include_directories(app)
 include_directories(domain)
@@ -18,3 +22,5 @@ add_executable(cgame
         domain/World.c
         domain/World.h
         main.c)
+
+target_link_libraries(cgame ${CURSES_LIBRARIES})

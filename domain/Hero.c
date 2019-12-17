@@ -4,6 +4,7 @@
 Hero hero_new(int lives, int speed, int x, int y){
     Hero hero;
 
+    hero.lives = lives;
     hero.speed = speed;
     hero.x = x;
     hero.y = y;
@@ -23,6 +24,6 @@ void hero_print(Hero *self) {
 }
 
 void hero_move(Hero *self, int x, int y){
-    self->x += x*self->speed;
-    self->y += y*self->speed;
+    self->x += x*(int)self->speed;
+    self->y += y*(int)self->speed;
 }
