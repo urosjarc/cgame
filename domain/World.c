@@ -3,18 +3,20 @@
 //
 
 #include "World.h"
+#include "Enemy.h"
 
-World world_new(int enemy_num, int speed) {
+World world_new(int speed) {
     World world;
 
-    world.height = 20;
+    int enemy_num = world_enemy_num(&world);
+    world.height = 10;
     world.width = 20;
 
-    world.hero = hero_new(1, 1, 0, 0);
+    world.hero = hero_new(1, 1, world.width / 2, world.height - 1);
     hero_print(&world.hero);
 
-    for(int i=0;i<enemy_num;i++){
-        world.enemies[i] = enemy_new(0, 0, speed);
+    for (int i = 0; i < enemy_num; i++) {
+        world.enemies[i] = enemy_new(i, 0, speed);
         enemy_print(&world.enemies[i]);
     }
 
@@ -23,10 +25,26 @@ World world_new(int enemy_num, int speed) {
 
 void world_next_move(World *self) {
 
-    int enemy_num = sizeof(self->enemies)/ sizeof(Enemy);
+    int enemy_num = world_enemy_num(self);
+    int enemy_wall_collision = 0;
 
-    for(int i=0;i<enemy_num;i++){
-        enemy_move(&self->enemies[i], 1, 0);
+    if ((enemy_x_move_direction == 1 && self->enemies[enemy_num - 1].x == self->width) ||
+        (enemy_x_move_direction == -1 && self->enemies[0].x == 0)) {
+
+        enemy_wall_collision = 1;
+        enemy_x_move_direction *= -1;
     }
 
+    for (int i = 0; i < enemy_num; i++) {
+        Enemy *enemy = &self->enemies[i];
+
+        if (enemy_wall_collision) {
+            enemy_move_down(enemy);
+        } else enemy_move(enemy);
+    }
+
+}
+
+int world_enemy_num(World *self) {
+    return sizeof(self->enemies) / sizeof(Enemy);
 }

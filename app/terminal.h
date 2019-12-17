@@ -11,3 +11,4 @@
 #endif //CGAME_TERMINAL_H
 
 void terminal_draw_world(World *world);
+void terminal_clear();

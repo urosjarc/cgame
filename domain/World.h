@@ -13,11 +13,12 @@ typedef struct World {
     int width;
     int height;
     Hero hero;
-    Enemy enemies[20];
+    Enemy enemies[9];
     Laser lasers[21];
 } World;
 
-World world_new(int enemy_num, int speed);
+World world_new(int speed);
 void world_next_move(World *self);
+int world_enemy_num(World *self);
 
 #endif //CGAME_WORLD_H
