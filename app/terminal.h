@@ -10,4 +10,6 @@
 #endif //CGAME_TERMINAL_H
 
 int terminal_main(World *world);
+
+void terminal_msg(World *world, char msg[]);
 void terminal_draw_world(World *world);

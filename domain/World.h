@@ -18,8 +18,8 @@ typedef struct World {
 } World;
 
 World world_new(int speed);
-void world_move_hero(World *self, char key);
-void world_move_enemies(World *self);
+void world_event_hero(World *self, char key);
+void world_event_enemy(World *self);
 int world_enemy_num(World *self);
 
 #endif //CGAME_WORLD_H

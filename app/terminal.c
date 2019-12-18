@@ -15,16 +15,35 @@ int terminal_main(World *world) {
 
     //Main loop
     char key;
+    int end = 0;
     for(int i=0; (key=getch()) != 'q';i++){
         terminal_draw_world(world);
-        world_move_hero(world, key);
-        if(i%10==0) world_move_enemies(world);
+        world_event_hero(world, key);
+        if(i%10==0) {
+            world_event_enemy(world);
+            if(world->enemies[0].y == world->height)
+                end = 1;
+        }
+
+        if(end){
+            terminal_msg(world, "The End");
+            sleep(2);
+            break;
+        }
         usleep(1e4);
     }
 
     //End screen
+    terminal_msg(world, "Good Bye");
+    sleep(2);
+
     endwin();
     return 0;
+}
+
+void terminal_msg(World *world, char *msg) {
+    mvaddstr(world->height/2, world->width/2 - (int)sizeof(msg)/sizeof(char)/2, msg);
+    refresh();
 }
 
 void terminal_draw_world(World *world){
@@ -42,6 +61,9 @@ void terminal_draw_world(World *world){
     //PLACE HERO
     Hero hero = world->hero;
     mvaddch(hero.y, hero.x, '^');
+
+    //PLACE HERO LASER
+    mvaddch(hero.laser.y, hero.laser.x, '^');
 
     //PLACE ENEMIES
     int enemy_num = world_enemy_num(world);
