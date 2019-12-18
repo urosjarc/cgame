@@ -17,13 +17,19 @@ int terminal_main(World *world) {
     char key;
     int end = 0;
     for(int i=0; (key=getch()) != 'q';i++){
+
         terminal_draw_world(world);
-        world_event_hero(world, key);
+        world_event(world, key);
+
         if(i%10==0) {
-            world_event_enemy(world);
+            world_move_enemy(world);
+
             if(world->enemies[0].y == world->height)
                 end = 1;
         }
+
+        if(i%10 == 0)
+            world_move_hero_laser(world);
 
         if(end){
             terminal_msg(world, "The End");

@@ -21,7 +21,7 @@ World world_new(int speed) {
     return world;
 }
 
-void world_event_enemy(World *self) {
+void world_move_enemy(World *self) {
 
     int enemy_num = world_enemy_num(self);
     int enemy_wall_collision = 0;
@@ -43,7 +43,7 @@ void world_event_enemy(World *self) {
 
 }
 
-void world_event_hero(World *self, char key){
+void world_event(World *self, char key){
 
     //MOVING HERO
     Hero *hero = &self->hero;
@@ -55,13 +55,18 @@ void world_event_hero(World *self, char key){
     }
     hero_move(hero, dx, 0);
 
+}
+
+void world_move_hero_laser(World *self){
+    Laser *laser = &self->hero.laser;
     //MOVING HERO LASER
-    if(hero->laser.speed > 0){
-        laser_move(&hero->laser, 0, -1);
-        if(hero->laser.y == 0){
-            hero->laser.speed = 0;
+    if(laser->speed > 0){
+        laser_move(laser, 0, -1);
+        if(laser->y == 0){
+            laser->speed = 0;
         }
     }
+
 
 }
 
