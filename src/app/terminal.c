@@ -7,61 +7,75 @@
 #include "terminal.h"
 #include <stdlib.h>
 
-int terminal_main(World *world, int enemy_speed, int laser_speed) {
-    //Init screen
-    initscr();
-    noecho();
-    nodelay(stdscr, TRUE);
-    refresh();
+int terminal_main() {
 
-    //Main loop
-    char key;
-    int end = 0;
-    for (int i = 0; (key = getch()) != 'q'; i++) {
+    World world = world_new(HERO_lives);
 
-        terminal_draw_world(world);
-        world_event(world, key);
+    for (int j = 0; j < 3; j++) {
 
-        if (i % enemy_speed == 0) {
-            mvaddch(12, 10, (rand() % 20) + '0');
-            world_move_enemy(world);
+        if(j!=0) world = world_new(world.hero.lives);
 
-            if (world->enemies[0].y == world->height)
-                end = 1;
-        }
+        char key;
+        int end = 0;
+        for (int i = 0; (key = getch()) != 'q'; i++) {
 
-        if (i % laser_speed == 0) {
-            world_move_enemy_lasers(world);
-            int enemy_alive_num = world_move_hero_laser(world);
-            if (enemy_alive_num == 0) {
-                terminal_draw_world(world);
-                terminal_msg(world, "You Won! :D");
-                sleep(2);
+            terminal_draw_world(&world);
+            terminal_draw_infos(&world);
+            world_event(&world, key);
+
+            if (i % ENEMY_speed == 0) {
+                world_move_enemy(&world);
+
+                if (world.enemies[0].y == world.width)
+                    end = 1;
+            }
+            if (i % LASER_speed == 0) {
+
+                int hero_hit = world_move_enemy_lasers(&world);
+                int enemy_alive_num = world_move_hero_laser(&world);
+
+                if (!enemy_alive_num) {
+                    terminal_draw_world(&world);
+                    terminal_msg(&world, "You Won! :D", 2);
+                    break;
+                }
+
+                if(hero_hit && !world.hero.lives){
+                    terminal_draw_infos(&world);
+                    terminal_msg(&world, "GAME OVER!", 2);
+                    break;
+                }
+
+
+            }
+
+            if (end) {
+                terminal_msg(&world, "The End", 2);
                 break;
             }
+
+            move(0, 0);
+            usleep(1e4);
         }
 
-        if (end) {
-            terminal_msg(world, "The End");
-            sleep(2);
-            break;
-        }
-
-        move(0, 0);
-        usleep(1e4);
+        if (j == 2) terminal_msg(&world, "Good Bye", 2);
     }
-
-    //End screen
-    terminal_msg(world, "Good Bye");
-    sleep(2);
 
     endwin();
     return 0;
 }
 
-void terminal_msg(World *world, char *msg) {
-    mvaddstr(world->height / 2, world->width / 2 - (int) sizeof(msg) / sizeof(char) / 2, msg);
+void terminal_init() {
+    initscr();
+    noecho();
+    nodelay(stdscr, TRUE);
     refresh();
+}
+
+void terminal_msg(World *world, char *msg, int slp) {
+    mvaddstr(world->height / 2, (int)((world->width - (float)sizeof(msg) / sizeof(char)) / 2), msg);
+    refresh();
+    sleep(slp);
 }
 
 void terminal_draw_world(World *world) {
@@ -87,11 +101,21 @@ void terminal_draw_world(World *world) {
 
     //PLACE ENEMIES
     int enemy_num = world_enemy_num(world);
-    for (int i = 0; i < enemy_num - 1; i++) {
+    for (int i = 0; i < enemy_num; i++) {
         Enemy enemy = world->enemies[i];
         Laser laser = enemy.laser;
         if (enemy.is_alive) mvaddch(enemy.y, enemy.x, 'x');
         if (laser.is_alive) mvaddch(laser.y, laser.x, '*');
     }
+}
+
+void terminal_draw_infos(World *world) {
+    char lives[10];
+    char points[10];
+    sprintf(lives, "Lives: %i", world->hero.lives);
+    sprintf(points, "Points: %i", HERO_points);
+    mvaddstr(world->height+1, 0, lives);
+    mvaddstr(world->height+2, 0, points);
+    refresh();
 }
 

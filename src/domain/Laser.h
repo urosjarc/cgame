@@ -1,14 +1,15 @@
 #ifndef CGAME_LASER_H
 #define CGAME_LASER_H
 
+int LASER_speed;
+
 typedef struct Laser {
     int is_alive;
-    int speed;
     int x;
     int y;
 } Laser;
 
-Laser laser_new(int x, int y, int speed);
+Laser laser_new(int x, int y);
 
 void laser_reset(Laser *);
 

@@ -4,13 +4,14 @@
 
 #include "Laser.h"
 
-Laser laser_new(int x, int y, int speed) {
+int LASER_speed = 10;
+
+Laser laser_new(int x, int y) {
     Laser laser;
 
     laser.is_alive = 0;
     laser.x = x;
     laser.y = y;
-    laser.speed = speed;
 
     return laser;
 }

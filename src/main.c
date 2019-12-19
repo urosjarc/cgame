@@ -5,8 +5,7 @@
 
 
 int main() {
-
-    World world = world_new(1);
-    return terminal_main(&world, 100, 10);
+    terminal_init();
+    return terminal_main();
 }
 

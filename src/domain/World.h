@@ -16,7 +16,7 @@ typedef struct World {
     Enemy enemies[9];
 } World;
 
-World world_new(int speed);
+World world_new(int hero_lives);
 
 void world_event(World *self, char key);
 
@@ -24,7 +24,7 @@ void world_move_enemy(World *self);
 
 int world_move_hero_laser(World *self);
 
-void world_move_enemy_lasers(World *self);
+int world_move_enemy_lasers(World *self);
 
 int world_enemy_num(World *self);
 
