@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "domain/World.h"
-#include "app/terminal.h"
+#include "World.h"
+#include "terminal.h"
 
 
 int main() {

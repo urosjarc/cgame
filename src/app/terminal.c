@@ -5,7 +5,7 @@
 #include <ncurses.h>
 #include <zconf.h>
 #include "terminal.h"
-
+#include <stdlib.h>
 
 int terminal_main(World *world, int enemy_speed, int laser_speed) {
     //Init screen
@@ -17,21 +17,23 @@ int terminal_main(World *world, int enemy_speed, int laser_speed) {
     //Main loop
     char key;
     int end = 0;
-    for(int i=0; (key=getch()) != 'q';i++){
+    for (int i = 0; (key = getch()) != 'q'; i++) {
 
         terminal_draw_world(world);
         world_event(world, key);
 
-        if(i%enemy_speed==0) {
+        if (i % enemy_speed == 0) {
+            mvaddch(12, 10, (rand() % 20) + '0');
             world_move_enemy(world);
 
-            if(world->enemies[0].y == world->height)
+            if (world->enemies[0].y == world->height)
                 end = 1;
         }
 
-        if(i%laser_speed == 0){
+        if (i % laser_speed == 0) {
+            world_move_enemy_lasers(world);
             int enemy_alive_num = world_move_hero_laser(world);
-            if(enemy_alive_num == 0) {
+            if (enemy_alive_num == 0) {
                 terminal_draw_world(world);
                 terminal_msg(world, "You Won! :D");
                 sleep(2);
@@ -39,7 +41,7 @@ int terminal_main(World *world, int enemy_speed, int laser_speed) {
             }
         }
 
-        if(end){
+        if (end) {
             terminal_msg(world, "The End");
             sleep(2);
             break;
@@ -58,17 +60,17 @@ int terminal_main(World *world, int enemy_speed, int laser_speed) {
 }
 
 void terminal_msg(World *world, char *msg) {
-    mvaddstr(world->height/2, world->width/2 - (int)sizeof(msg)/sizeof(char)/2, msg);
+    mvaddstr(world->height / 2, world->width / 2 - (int) sizeof(msg) / sizeof(char) / 2, msg);
     refresh();
 }
 
-void terminal_draw_world(World *world){
+void terminal_draw_world(World *world) {
 
     //DRAW WORLD
-    for(int h=0;h<world->height+1;h++){
-        for(int w=1;w<world->width;w++)
+    for (int h = 0; h < world->height + 1; h++) {
+        for (int w = 1; w < world->width; w++)
             mvaddch(h, w, ' ');
-        if(h<world->height){
+        if (h < world->height) {
             mvaddch(h, 0, '|');
             mvaddch(h, world->width, '|');
         }
@@ -76,18 +78,20 @@ void terminal_draw_world(World *world){
 
     //PLACE HERO
     Hero hero = world->hero;
-    for(int h=0;h<world->height+1;h++) mvaddch(h, hero.x, '|');
+    for (int h = 0; h < world->height + 1; h++) mvaddch(h, hero.x, '|');
     mvaddch(hero.y, hero.x, '^');
 
 
     //PLACE HERO LASER
-    if(hero.laser.is_alive) mvaddch(hero.laser.y, hero.laser.x, '^');
+    if (hero.laser.is_alive) mvaddch(hero.laser.y, hero.laser.x, '^');
 
     //PLACE ENEMIES
     int enemy_num = world_enemy_num(world);
-    for(int i=0;i<enemy_num-1;i++){
+    for (int i = 0; i < enemy_num - 1; i++) {
         Enemy enemy = world->enemies[i];
-        if(enemy.is_alive) mvaddch(enemy.y, enemy.x, 'x');
+        Laser laser = enemy.laser;
+        if (enemy.is_alive) mvaddch(enemy.y, enemy.x, 'x');
+        if (laser.is_alive) mvaddch(laser.y, laser.x, '*');
     }
 }
 

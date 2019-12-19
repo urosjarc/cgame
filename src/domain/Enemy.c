@@ -16,6 +16,12 @@ Enemy enemy_new(int x, int y, int speed) {
 }
 
 
+void enemy_shot(Enemy *self) {
+    self->laser.x = self->x;
+    self->laser.y = self->y;
+    self->laser.is_alive = 1;
+}
+
 void enemy_move_down(Enemy *self) {
     self->y += self->speed;
 }

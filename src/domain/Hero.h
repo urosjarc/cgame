@@ -17,7 +17,9 @@ typedef struct Hero {
 } Hero;
 
 Hero hero_new(int lives, int speed, int x, int y);
+
 void hero_move(Hero *, int x, int y);
+
 void hero_shot(Hero *pHero);
 
 #endif //CGAME_HERO_H

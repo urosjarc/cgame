@@ -18,7 +18,11 @@ typedef struct Enemy {
 } Enemy;
 
 Enemy enemy_new(int x, int y, int speed);
+void enemy_shot(Enemy *self);
+
+
 void enemy_move(Enemy *self);
+
 void enemy_move_down(Enemy *self);
 
 #endif //CGAME_ENEMY_H

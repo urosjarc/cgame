@@ -2,7 +2,7 @@
 #include "Hero.h"
 #include "Laser.h"
 
-Hero hero_new(int lives, int speed, int x, int y){
+Hero hero_new(int lives, int speed, int x, int y) {
     Hero hero;
 
     hero.lives = lives;
@@ -17,9 +17,9 @@ Hero hero_new(int lives, int speed, int x, int y){
     return hero;
 }
 
-void hero_move(Hero *self, int x, int y){
-    self->x += x*(int)self->speed;
-    self->y += y*(int)self->speed;
+void hero_move(Hero *self, int x, int y) {
+    self->x += x * (int) self->speed;
+    self->y += y * (int) self->speed;
 }
 
 void hero_shot(Hero *hero) {

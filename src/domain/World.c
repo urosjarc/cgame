@@ -3,8 +3,12 @@
 //
 
 #include <ncurses.h>
+#include <stdlib.h>
+#include <zconf.h>
 #include "World.h"
 #include "Enemy.h"
+
+void enemy_shot(Enemy *self);
 
 World world_new(int speed) {
     World world;
@@ -55,6 +59,15 @@ void world_event(World *self, char key) {
     }
     hero_move(hero, dx, 0);
 
+    //MOVING ENEMY ENEMIES & THEIR LASERS
+    for(int i=0;i<world_enemy_num(self);i++){
+        Enemy *enemy = &self->enemies[i];
+        if(enemy->is_alive && (rand() % 20) == 0 && !enemy->laser.is_alive){
+            enemy_shot(enemy);
+        }
+    }
+
+
 }
 
 int world_move_hero_laser(World *self) {
@@ -91,7 +104,7 @@ int world_enemy_num(World *self) {
 
 void world_move_enemy_lasers(World *self) {
     int laser_num = world_enemy_num(self);
-    for(int i=0;i<laser_num;i++){
+    for (int i = 0; i < laser_num; i++) {
         Laser *laser = &self->enemies[i].laser;
         //MOVING HERO LASER
         if (laser->is_alive) {
