@@ -6,8 +6,6 @@
 #include "World.h"
 #include "Enemy.h"
 
-void laser_reset();
-
 World world_new(int speed) {
     World world;
 
@@ -52,7 +50,7 @@ void world_event(World *self, char key) {
     int dx = 0;
     if (key == 'h' && hero->x > 1) dx = -1;
     else if (key == 'l' && hero->x < self->width - 1) dx = 1;
-    else if (key == ' ' && hero->laser.speed == 0) {
+    else if (key == 'x' && !hero->laser.is_alive) {
         hero_shot(hero);
     }
     hero_move(hero, dx, 0);
@@ -65,21 +63,21 @@ int world_move_hero_laser(World *self) {
     if (laser->speed > 0) {
         laser_move(laser, 0, -1);
         if (laser->y == -1) {
-            laser_reset(laser);
+            laser->is_alive = 0;
         }
     }
 
     //CHECK LASER COLLISION WITH ENEMY
     int enemy_num = world_enemy_num(self);
-    int enemy_alive_num = -1;
+    int enemy_alive_num = 0;
     for (int i = 0; i < enemy_num; i++) {
         Enemy *enemy = &self->enemies[i];
         if (enemy->is_alive) {
             enemy_alive_num++;
             if (enemy->x == laser->x && enemy->y == laser->y) {
-                enemy_killed(enemy);
+                enemy->is_alive = 0;
+                laser->is_alive = 0;
                 enemy_alive_num--;
-                laser_reset(laser);
             }
         }
     }
@@ -87,7 +85,20 @@ int world_move_hero_laser(World *self) {
     return enemy_alive_num;
 }
 
-
 int world_enemy_num(World *self) {
     return sizeof(self->enemies) / sizeof(Enemy);
+}
+
+void world_move_enemy_lasers(World *self) {
+    int laser_num = world_enemy_num(self);
+    for(int i=0;i<laser_num;i++){
+        Laser *laser = &self->enemies[i].laser;
+        //MOVING HERO LASER
+        if (laser->is_alive) {
+            laser_move(laser, 0, 1);
+            if (laser->y == 0) {
+                laser->is_alive = 0;
+            }
+        }
+    }
 }

@@ -7,24 +7,12 @@
 Laser laser_new(int x, int y, int speed){
     Laser laser;
 
+    laser.is_alive = 0;
     laser.x = x;
     laser.y = y;
     laser.speed = speed;
 
     return laser;
-}
-
-void laser_print(Laser *self){
-    printf("Laser: %x", self);
-    printf(" - speed: %i", self->speed);
-    printf(" - posit: (%ix, %iy)\n", self->x, self->y);
-}
-
-
-void laser_reset(Laser *self) {
-    self->x = 0;
-    self->y = 0;
-    self->speed = 0;
 }
 
 void laser_move(Laser *self, int x, int y){

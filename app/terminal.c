@@ -76,10 +76,12 @@ void terminal_draw_world(World *world){
 
     //PLACE HERO
     Hero hero = world->hero;
+    for(int h=0;h<world->height+1;h++) mvaddch(h, hero.x, '|');
     mvaddch(hero.y, hero.x, '^');
 
+
     //PLACE HERO LASER
-    mvaddch(hero.laser.y, hero.laser.x, '^');
+    if(hero.laser.is_alive) mvaddch(hero.laser.y, hero.laser.x, '^');
 
     //PLACE ENEMIES
     int enemy_num = world_enemy_num(world);

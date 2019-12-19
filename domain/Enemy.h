@@ -5,6 +5,8 @@
 #ifndef CGAME_ENEMY_H
 #define CGAME_ENEMY_H
 
+#include "Laser.h"
+
 int enemy_x_move_direction;
 
 typedef struct Enemy {
@@ -12,12 +14,11 @@ typedef struct Enemy {
     int speed;
     int x;
     int y;
+    Laser laser;
 } Enemy;
 
 Enemy enemy_new(int x, int y, int speed);
-void enemy_print(Enemy *);
 void enemy_move(Enemy *self);
-void enemy_killed(Enemy *self);
 void enemy_move_down(Enemy *self);
 
 #endif //CGAME_ENEMY_H
