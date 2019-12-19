@@ -10,6 +10,7 @@ typedef struct Laser {
 Laser laser_new(int x, int y, int speed);
 void laser_print(Laser *);
 
+void laser_reset(Laser *self);
 void laser_move(Laser *, int x, int y);
 
 

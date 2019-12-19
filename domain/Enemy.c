@@ -6,6 +6,7 @@ int enemy_x_move_direction = 1;
 Enemy enemy_new(int x, int y, int speed) {
     Enemy enemy;
 
+    enemy.is_alive = 1;
     enemy.speed = speed;
     enemy.x = x;
     enemy.y = y;
@@ -21,7 +22,11 @@ void enemy_print(Enemy *self) {
 }
 
 void enemy_move_down(Enemy *self) {
-        self->y += self->speed;
+    self->y += self->speed;
+}
+
+void enemy_killed(Enemy *self) {
+    self->is_alive = 0;
 }
 
 void enemy_move(Enemy *self) {

@@ -6,7 +6,8 @@
 #include <zconf.h>
 #include "terminal.h"
 
-int terminal_main(World *world) {
+
+int terminal_main(World *world, int enemy_speed, int laser_speed) {
     //Init screen
     initscr();
     noecho();
@@ -21,21 +22,30 @@ int terminal_main(World *world) {
         terminal_draw_world(world);
         world_event(world, key);
 
-        if(i%10==0) {
+        if(i%enemy_speed==0) {
             world_move_enemy(world);
 
             if(world->enemies[0].y == world->height)
                 end = 1;
         }
 
-        if(i%10 == 0)
-            world_move_hero_laser(world);
+        if(i%laser_speed == 0){
+            int enemy_alive_num = world_move_hero_laser(world);
+            if(enemy_alive_num == 0) {
+                terminal_draw_world(world);
+                terminal_msg(world, "You Won! :D");
+                sleep(2);
+                break;
+            }
+        }
 
         if(end){
             terminal_msg(world, "The End");
             sleep(2);
             break;
         }
+
+        move(0, 0);
         usleep(1e4);
     }
 
@@ -75,7 +85,7 @@ void terminal_draw_world(World *world){
     int enemy_num = world_enemy_num(world);
     for(int i=0;i<enemy_num-1;i++){
         Enemy enemy = world->enemies[i];
-        mvaddch(enemy.y, enemy.x, 'x');
+        if(enemy.is_alive) mvaddch(enemy.y, enemy.x, 'x');
     }
 }
 

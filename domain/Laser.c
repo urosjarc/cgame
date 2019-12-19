@@ -20,6 +20,13 @@ void laser_print(Laser *self){
     printf(" - posit: (%ix, %iy)\n", self->x, self->y);
 }
 
+
+void laser_reset(Laser *self) {
+    self->x = 0;
+    self->y = 0;
+    self->speed = 0;
+}
+
 void laser_move(Laser *self, int x, int y){
     self->x += x;
     self->y += y;

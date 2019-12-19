@@ -7,6 +7,6 @@
 int main() {
 
     World world = world_new(1);
-    return terminal_main(&world);
+    return terminal_main(&world, 100, 10);
 }
 
