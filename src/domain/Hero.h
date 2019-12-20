@@ -7,23 +7,19 @@
 
 #include "Laser.h"
 
-
-int HERO_speed;
-int HERO_lives;
-int HERO_points;
-
 typedef struct Hero {
     Laser laser;
     int lives;
     int speed;
+    int points;
     int x;
     int y;
 } Hero;
 
-Hero hero_new(int lives, int x, int y);
+Hero hero_new(int x, int y);
 
 void hero_move(Hero *, int x, int y);
 
-void hero_shot(Hero *pHero);
+void hero_shot(Hero *);
 
 #endif //CGAME_HERO_H

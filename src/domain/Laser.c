@@ -7,13 +7,13 @@
 int LASER_speed = 10;
 
 Laser laser_new(int x, int y) {
-    Laser laser;
+    Laser self;
 
-    laser.is_alive = 0;
-    laser.x = x;
-    laser.y = y;
+    self.is_alive = 0;
+    self.x = x;
+    self.y = y;
 
-    return laser;
+    return self;
 }
 
 void laser_move(Laser *self, int x, int y) {

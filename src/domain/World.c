@@ -7,19 +7,23 @@
 #include "Enemy.h"
 
 
-World world_new(int hero_lives) {
-    World world;
+World world_new() {
+    World self;
 
-    int enemy_num = world_enemy_num(&world);
-    world.height = 10;
-    world.width = 20;
-    world.hero = hero_new(hero_lives, world.width / 2, world.height);
+    self.height = 10;
+    self.width = 20;
+    self.hero = hero_new(self.width / 2, self.height);
 
+    world_new_enemies(&self);
+
+    return self;
+}
+
+void world_new_enemies(World *self){
+    int enemy_num = world_enemy_num(self);
     ENEMY_x_move_direction = 1;
     for (int i = 0; i < enemy_num; i++)
-        world.enemies[i] = enemy_new(i + 1, 0);
-
-    return world;
+        self->enemies[i] = enemy_new(i + 1, 0);
 }
 
 void world_event(World *self, char key) {
@@ -85,7 +89,7 @@ int world_move_hero_laser(World *self) {
         if (laser->is_alive && enemy->is_alive && enemy->x == laser->x && enemy->y == laser->y) {
             enemy->is_alive = 0;
             laser->is_alive = 0;
-            HERO_points++;
+            self->hero.points++;
         }
         if (enemy->is_alive) enemy_alive_num++;
     }

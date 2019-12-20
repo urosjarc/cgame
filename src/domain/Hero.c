@@ -1,21 +1,18 @@
-#include <stdio.h>
 #include "Hero.h"
 #include "Laser.h"
 
-int HERO_speed = 100;
-int HERO_lives = 3;
-int HERO_points = 0;
+Hero hero_new(int x, int y) {
+    Hero self;
 
-Hero hero_new(int lives, int x, int y) {
-    Hero hero;
+    self.x = x;
+    self.y = y;
+    self.laser = laser_new(x, y);
 
-    hero.lives = lives;
-    hero.x = x;
-    hero.y = y;
+    self.speed = 100;
+    self.points = 0;
+    self.lives = 3;
 
-    hero.laser = laser_new(x, y);
-
-    return hero;
+    return self;
 }
 
 void hero_move(Hero *self, int x, int y) {
@@ -23,9 +20,9 @@ void hero_move(Hero *self, int x, int y) {
     self->y += y;
 }
 
-void hero_shot(Hero *hero) {
-    hero->laser.x = hero->x;
-    hero->laser.y = hero->y;
-    hero->laser.is_alive = 1;
+void hero_shot(Hero *self) {
+    self->laser.x = self->x;
+    self->laser.y = self->y;
+    self->laser.is_alive = 1;
 }
 

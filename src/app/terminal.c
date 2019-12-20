@@ -9,25 +9,31 @@
 
 int terminal_main() {
 
-    World world = world_new(HERO_lives);
+    World world = world_new();
+    int rounds = 10;
 
-    for (int j = 0; j < 3; j++) {
+    for (int j = 1; j <= rounds; j++) {
 
-        if(j!=0) world = world_new(world.hero.lives);
+        int next_round = 0;
+
+        if (j != 1){
+            world_new_enemies(&world);
+            ENEMY_speed -= 10;
+        }
 
         char key;
-        int end = 0;
         for (int i = 0; (key = getch()) != 'q'; i++) {
 
             terminal_draw_world(&world);
-            terminal_draw_infos(&world);
+            terminal_draw_infos(&world, j);
             world_event(&world, key);
 
             if (i % ENEMY_speed == 0) {
                 world_move_enemy(&world);
 
-                if (world.enemies[0].y == world.width)
-                    end = 1;
+                if (world.enemies[0].y == world.height) {
+                    break;
+                }
             }
             if (i % LASER_speed == 0) {
 
@@ -36,29 +42,32 @@ int terminal_main() {
 
                 if (!enemy_alive_num) {
                     terminal_draw_world(&world);
-                    terminal_msg(&world, "You Won! :D", 2);
+                    next_round = 1;
                     break;
                 }
 
-                if(hero_hit && !world.hero.lives){
-                    terminal_draw_infos(&world);
-                    terminal_msg(&world, "GAME OVER!", 2);
+                if (hero_hit && !world.hero.lives) {
+                    terminal_draw_infos(&world, j);
                     break;
                 }
 
-
-            }
-
-            if (end) {
-                terminal_msg(&world, "The End", 2);
-                break;
             }
 
             move(0, 0);
             usleep(1e4);
         }
 
-        if (j == 2) terminal_msg(&world, "Good Bye", 2);
+        if (next_round) {
+            if(j==rounds){
+                terminal_msg(&world, "You Won!", 2);
+                break;
+            }
+            terminal_msg(&world, "Next Round!", 2);
+            continue;
+        } else {
+            terminal_msg(&world, "Game Over!", 2);
+            break;
+        }
     }
 
     endwin();
@@ -73,7 +82,7 @@ void terminal_init() {
 }
 
 void terminal_msg(World *world, char *msg, int slp) {
-    mvaddstr(world->height / 2, (int)((world->width - (float)sizeof(msg) / sizeof(char)) / 2), msg);
+    mvaddstr(world->height / 2, (int) ((world->width - (float) sizeof(msg) / sizeof(char)) / 2), msg);
     refresh();
     sleep(slp);
 }
@@ -109,13 +118,16 @@ void terminal_draw_world(World *world) {
     }
 }
 
-void terminal_draw_infos(World *world) {
+void terminal_draw_infos(World *world, int round) {
     char lives[10];
     char points[10];
+    char rounds[10];
     sprintf(lives, "Lives: %i", world->hero.lives);
-    sprintf(points, "Points: %i", HERO_points);
-    mvaddstr(world->height+1, 0, lives);
-    mvaddstr(world->height+2, 0, points);
+    sprintf(points, "Points: %i", world->hero.points);
+    sprintf(rounds, "Round: %i", round);
+    mvaddstr(world->height + 1, 0, lives);
+    mvaddstr(world->height + 2, 0, points);
+    mvaddstr(world->height + 3, 0, rounds);
     refresh();
 }
 

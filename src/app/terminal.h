@@ -15,6 +15,6 @@ int terminal_main();
 
 void terminal_msg(World *world, char msg[], int slp);
 
-void terminal_draw_infos(World *world);
+void terminal_draw_infos(World *world, int round);
 
 void terminal_draw_world(World *world);

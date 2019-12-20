@@ -19,10 +19,10 @@ typedef struct Enemy {
 
 Enemy enemy_new(int x, int y);
 
-void enemy_shot(Enemy *self);
+void enemy_shot(Enemy *);
 
-void enemy_move(Enemy *self);
+void enemy_move(Enemy *);
 
-void enemy_move_down(Enemy *self);
+void enemy_move_down(Enemy *);
 
 #endif //CGAME_ENEMY_H

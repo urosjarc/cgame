@@ -16,16 +16,18 @@ typedef struct World {
     Enemy enemies[9];
 } World;
 
-World world_new(int hero_lives);
+World world_new();
 
-void world_event(World *self, char key);
+void world_new_enemies(World *);
 
-void world_move_enemy(World *self);
+void world_event(World *, char key);
 
-int world_move_hero_laser(World *self);
+void world_move_enemy(World *);
 
-int world_move_enemy_lasers(World *self);
+int world_move_hero_laser(World *);
 
-int world_enemy_num(World *self);
+int world_move_enemy_lasers(World *);
+
+int world_enemy_num(World *);
 
 #endif //CGAME_WORLD_H

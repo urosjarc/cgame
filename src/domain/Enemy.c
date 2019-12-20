@@ -5,14 +5,14 @@ int ENEMY_x_move_direction = 1;
 int ENEMY_speed = 100;
 
 Enemy enemy_new(int x, int y) {
-    Enemy enemy;
+    Enemy self;
 
-    enemy.is_alive = 1;
-    enemy.x = x;
-    enemy.y = y;
-    enemy.laser = laser_new(x, y);
+    self.is_alive = 1;
+    self.x = x;
+    self.y = y;
+    self.laser = laser_new(x, y);
 
-    return enemy;
+    return self;
 }
 
 
