@@ -13,3 +13,5 @@ CTestTestfile.cmake
 _deps
 
 .idea
+doc
+cmake-build-debug
